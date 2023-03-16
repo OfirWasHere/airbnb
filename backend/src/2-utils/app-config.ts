@@ -12,6 +12,7 @@ class DevelopmentConfig extends AppConfig {
     public database = "clonebnb";
     public port = 4000;
     public clientUrl = "http://localhost:4000";
+    public usersImagesAddress = `http://localhost:${this.port}/api/users/vacations/images/`;
 };
 
 // Production Environment
@@ -21,9 +22,10 @@ class ProductionConfig extends AppConfig {
     public host = "localhost";
     public user = "root";
     public password = "";
-    public database = "____" // dont forget to add database
+    public database = "____" // dont forget to add database after deployment
     public port = 4000;
     public clientUrl = "";
+    public usersImagesAddress = `http://localhost:${this.port}//users/vacations/images/`;
 };
 
 // Currently development config

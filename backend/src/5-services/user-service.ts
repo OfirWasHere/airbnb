@@ -2,17 +2,19 @@ import { OkPacket } from "mysql";
 import dal from "../2-utils/dal";
 
 async function getAirbnbListings() {
-    const sql = "SELECT `main-data`.*, ROUND(AVG(`rating`.`rating`), 1) AS `average_rating` FROM `main-data` LEFT JOIN `rating` ON `main-data`.`property_id` = `rating`.`property_id` GROUP BY `main-data`.`property_id`";
+    const sql = "SELECT * FROM `main-data`";
     const response = await dal.execute(sql);
     return response;
 }
 
-async function getOneAirbnbListing() {
-    const sql = "";
+async function getAllRatings() {
+    const sql = "SELECT `property_id`, SUM(`rating`) / COUNT(DISTINCT `userId`) AS `average_rating` FROM `rating` GROUP BY `property_id`";
     const response = await dal.execute(sql);
+    console.log(response);
     return response;
 }
 
 export default {
     getAirbnbListings,
+    getAllRatings
 };
